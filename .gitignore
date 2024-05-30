@@ -64,3 +64,4 @@ env/
 venv/
 
 tests/*.py
+.env

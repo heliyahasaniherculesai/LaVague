@@ -1,12 +1,11 @@
 from lavague.core import WorldModel, ActionEngine
 from lavague.core.agents import WebAgent
 from lavague.drivers.selenium import SeleniumDriver
-from lavague.contexts.openai import OpenaiContext
-from lavague.contexts.gemini import GeminiContext
+from lavague.contexts.openai import AzureOpenaiContext
 
 
-context = GeminiContext()
-context.mm_llm = OpenaiContext().mm_llm
+context = AzureOpenaiContext()
+context.mm_llm = AzureOpenaiContext().mm_llm
 selenium_driver = SeleniumDriver()
 world_model = WorldModel.from_context(context)
 action_engine = ActionEngine.from_context(context, selenium_driver)
