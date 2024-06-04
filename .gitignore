@@ -65,3 +65,4 @@ venv/
 
 tests/*.py
 .env
+.lavague.py
