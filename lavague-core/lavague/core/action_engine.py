@@ -20,6 +20,7 @@ from lavague.core.utilities.web_utils import (
     sort_files_by_creation,
 )
 
+
 ACTION_ENGINE_PROMPT_TEMPLATE = ActionTemplate(
     """
 {driver_capability}

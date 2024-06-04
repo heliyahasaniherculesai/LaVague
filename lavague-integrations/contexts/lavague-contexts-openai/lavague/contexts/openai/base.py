@@ -7,6 +7,10 @@ from llama_index.multi_modal_llms.openai import OpenAIMultiModal
 from llama_index.multi_modal_llms.azure_openai import AzureOpenAIMultiModal
 import os
 from lavague.core.context import Context, DEFAULT_MAX_TOKENS, DEFAULT_TEMPERATURE
+from dotenv import load_dotenv
+
+dotenv_path = "/home/heliya/Desktop/LaVague/.env"
+load_dotenv(dotenv_path)
 
 
 class OpenaiContext(Context):
