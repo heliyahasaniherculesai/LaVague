@@ -15,11 +15,11 @@ from lavague.core.base_driver import BaseDriver
 import trafilatura
 from llama_index.core import Document, VectorStoreIndex
 from lavague.core.logger import AgentLogger
-from lavague.core.action_engine import BaseActionEngine
+from lavague.core.base_engine import BaseEngine
 from PIL import Image
 
 
-class PythonEngine(BaseActionEngine):
+class PythonEngine(BaseEngine):
     llm: BaseLLM
     embedding: BaseEmbedding
     # TODO: Design question: should we have a driver available to Python engine?
@@ -28,10 +28,14 @@ class PythonEngine(BaseActionEngine):
     def __init__(
         self,
         driver: BaseDriver,
-        llm: BaseLLM = get_default_context().llm,
-        embedding: BaseEmbedding = get_default_context().embedding,
+        llm: BaseLLM = None,
+        embedding: BaseEmbedding = None,
         logger: AgentLogger = None,
     ):
+        if llm is None:
+            llm = get_default_context().llm
+        if embedding is None:
+            embedding = get_default_context().embedding
         self.llm = llm
         self.embedding = embedding
         self.driver = driver

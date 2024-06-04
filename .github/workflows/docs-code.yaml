@@ -21,6 +21,9 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
+
+    - name: Set env
+      run: echo "LAVAGUE_UNIQUE_USER_ID=GITHUB_CI" >> $GITHUB_ENV
       
     - name: Set up Python
       uses: actions/setup-python@v3
@@ -49,11 +52,6 @@ jobs:
           exit 1
         fi
 
-    - name: Replace OpenAI with Gemini
-      run: |
-        sed -i 's/action_engine = ActionEngine(selenium_driver)/from lavague.contexts.gemini import GeminiContext\ngemini_context = GeminiContext()\naction_engine = ActionEngine.from_context(gemini_context, selenium_driver)/' check-code.py
-        sed -i 's/agent = WebAgent(world_model, action_engine)/world_model = WorldModel.from_context(gemini_context)\nagent = WebAgent(world_model, action_engine)/' check-code.py
-    
     - name: Check code
       run: cat check-code.py
     
