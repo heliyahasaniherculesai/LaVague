@@ -32,14 +32,12 @@ class SeleniumDriver(BaseDriver):
         from selenium.webdriver.chrome.options import Options
         from selenium.webdriver.common.keys import Keys
         from selenium.webdriver.common.action_chains import ActionChains
-
         chrome_options = Options()
         if self.headless:
             chrome_options.add_argument("--headless")
         if self.chrome_user_dir:
             chrome_options.add_argument(f"--user-data-dir={self.chrome_user_dir}")
         chrome_options.add_argument("--no-sandbox")
-
         self.driver = webdriver.Chrome(options=chrome_options)
         self.resize_driver(1024, 1024)
         return self.driver
